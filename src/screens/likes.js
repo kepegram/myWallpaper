@@ -3,7 +3,7 @@ import {View, Text, Appearance} from 'react-native';
 import React, {useState} from 'react';
 import {generalStyles} from '../styles/styles';
 
-const Profile = () => {
+const Likes = () => {
   const [theme, setTheme] = useState(Appearance.getColorScheme());
   Appearance.addChangeListener(scheme => {
     setTheme(scheme.colorScheme);
@@ -13,11 +13,9 @@ const Profile = () => {
       style={
         theme === 'light' ? generalStyles.container : generalStyles.dmcontainer
       }>
-      <Text style={{color: theme === 'light' ? 'black' : 'white'}}>
-        Profile
-      </Text>
+      <Text style={{color: theme === 'light' ? 'black' : 'white'}}>Likes</Text>
     </View>
   );
 };
 
-export default Profile;
+export default Likes;

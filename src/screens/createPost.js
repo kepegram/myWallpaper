@@ -3,7 +3,7 @@ import {View, Text, Appearance} from 'react-native';
 import React, {useState} from 'react';
 import {generalStyles} from '../styles/styles';
 
-const Profile = () => {
+const CreatePost = () => {
   const [theme, setTheme] = useState(Appearance.getColorScheme());
   Appearance.addChangeListener(scheme => {
     setTheme(scheme.colorScheme);
@@ -14,10 +14,10 @@ const Profile = () => {
         theme === 'light' ? generalStyles.container : generalStyles.dmcontainer
       }>
       <Text style={{color: theme === 'light' ? 'black' : 'white'}}>
-        Profile
+        Create Post
       </Text>
     </View>
   );
 };
 
-export default Profile;
+export default CreatePost;
