@@ -2,3 +2,5 @@
 
     have the topbar dissapear when scrolling
     Get images from image API (unsplash api)
+
+    https://www.4waytechnologies.com/blog/how-to-create-a-set-wallpaper-button-in-a-react-native-app
