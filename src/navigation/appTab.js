@@ -20,17 +20,7 @@ function AppTab() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({route}) => ({
-        headerShown: route.name === 'Home' ? true : false,
-        headerTitle: 'myWallpaper',
-        headerTitleStyle: {
-          color: theme === 'light' ? 'black' : 'white',
-          fontSize: 40,
-          fontFamily: 'Billabong',
-        },
-        headerStyle: {
-          height: 50,
-          backgroundColor: theme === 'light' ? 'white' : 'black',
-        },
+        headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: theme === 'light' ? 'white' : 'black',
@@ -38,7 +28,7 @@ function AppTab() {
           shadowColor: 'grey',
         },
         tabBarActiveTintColor: theme === 'light' ? 'black' : 'white',
-        tabBarInactiveTintColor: '#C9C9C9',
+        tabBarInactiveTintColor: theme === 'light' ? '#C9C9C9' : '#484848',
         tabBarIcon: ({color, size}) => {
           let iconName;
           if (route.name === 'Home') {

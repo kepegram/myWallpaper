@@ -24,6 +24,25 @@ export const homeUI = StyleSheet.create({
     paddingBottom: 5,
     backgroundColor: 'black',
   },
+  headerText: {
+    color: 'black',
+    fontFamily: 'Billabong',
+    fontSize: 35,
+  },
+  dmheaderText: {
+    color: 'white',
+    fontFamily: 'Billabong',
+    fontSize: 35,
+  },
+  header: {
+    backgroundColor: 'white',
+    height: 95,
+  },
+  dmheader: {
+    backgroundColor: 'black',
+    height: 95,
+    borderColor: 'black',
+  },
   postListContainer: {
     paddingTop: 5,
   },
@@ -37,15 +56,15 @@ export const homeUI = StyleSheet.create({
   },
   postImage: {
     width: Dimensions.get('screen').width,
-    height: 550,
+    height: Dimensions.get('screen').height - 270,
   },
   postFooter: {
     flexDirection: 'row',
     marginTop: 5,
-    paddingLeft: 7,
+    paddingLeft: 13,
   },
   postButton: {
-    marginLeft: 5,
+    marginLeft: 0,
     marginRight: 5,
   },
   postDescription: {
@@ -62,14 +81,14 @@ export const homeUI = StyleSheet.create({
   },
   postDate: {
     paddingTop: 5,
+    paddingLeft: 3,
     fontSize: 10,
     color: 'black',
-    paddingLeft: 5,
   },
   dmpostDate: {
     paddingTop: 5,
-    paddingLeft: 5,
-    fontSize: 11,
+    paddingLeft: 3,
+    fontSize: 10,
     color: 'grey',
   },
 });
@@ -89,7 +108,7 @@ export const exploreUI = StyleSheet.create({
     borderRadius: 8,
     fontSize: 13,
     padding: 8,
-    marginTop: 5,
+    marginTop: 35,
     marginBottom: 5,
     marginLeft: 20,
   },
@@ -107,5 +126,87 @@ export const exploreUI = StyleSheet.create({
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
+  },
+});
+
+export const profileUI = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    backgroundColor: 'white',
+    alignItems: 'center',
+    padding: 50,
+  },
+  dmheader: {
+    backgroundColor: 'black',
+    alignItems: 'center',
+    padding: 50,
+  },
+  headerContent: {
+    alignItems: 'center',
+  },
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 80,
+  },
+  name: {
+    fontSize: 22,
+    color: '#000000',
+    fontWeight: '600',
+  },
+  dmname: {
+    fontSize: 22,
+    color: 'white',
+    fontWeight: '600',
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+  statsBox: {
+    alignItems: 'center',
+    marginHorizontal: 10,
+  },
+  statsCount: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  dmstatsCount: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  statsLabel: {
+    fontSize: 14,
+    color: '#999999',
+  },
+  body: {
+    backgroundColor: 'white',
+    alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  dmbody: {
+    backgroundColor: 'black',
+    alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  imageContainer: {
+    width: '33%',
+    padding: 5,
+    backgroundColor: 'white',
+  },
+  dmimageContainer: {
+    width: '33%',
+    padding: 5,
+    backgroundColor: 'black',
+  },
+  image: {
+    width: 115,
+    height: 290,
   },
 });

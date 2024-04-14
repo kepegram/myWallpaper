@@ -45,9 +45,6 @@ const Explore = () => {
   const [options, setOptions] = useState(data);
   const [searchText, setSearchText] = useState('');
   const [theme, setTheme] = useState(Appearance.getColorScheme());
-  Appearance.addChangeListener(scheme => {
-    setTheme(scheme.colorScheme);
-  });
 
   const renderItem = ({item}) => {
     if (item.empty === true) {
@@ -73,6 +70,10 @@ const Explore = () => {
     }
     return results;
   };
+
+  Appearance.addChangeListener(scheme => {
+    setTheme(scheme.colorScheme);
+  });
 
   return (
     <View
