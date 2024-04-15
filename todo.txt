@@ -1,6 +1,9 @@
 **MAKE APP LOOK LIKE INSTAGRAM**
 
     Get images from image API (unsplash api)
-    allow user to save images from timeline/explore tab/likes
+    allow user to like images seen on home page
+    allow user to save images from explore tab/likes
 
     https://www.4waytechnologies.com/blog/how-to-create-a-set-wallpaper-button-in-a-react-native-app
+    https://dev.to/majiyd/react-native-series-how-to-save-or-share-react-native-component-as-an-image-5gd3
+    https://github.com/react-native-cameraroll/react-native-cameraroll

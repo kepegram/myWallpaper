@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, {useState} from 'react';
-import {Appearance} from 'react-native';
+import {Appearance, Vibration} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Home from '../screens/home';
@@ -45,11 +45,51 @@ function AppTab() {
           return <Icon name={iconName} size={size} color={color} />;
         },
       })}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Explore" component={Explore} />
-      <Tab.Screen name="Create Post" component={CreatePost} />
-      <Tab.Screen name="Likes" component={Likes} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        listeners={() => ({
+          tabPress: () => {
+            Vibration.vibrate(5);
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Explore"
+        component={Explore}
+        listeners={() => ({
+          tabPress: () => {
+            Vibration.vibrate(5);
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Create Post"
+        component={CreatePost}
+        listeners={() => ({
+          tabPress: () => {
+            Vibration.vibrate(5);
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Likes"
+        component={Likes}
+        listeners={() => ({
+          tabPress: () => {
+            Vibration.vibrate(5);
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        listeners={() => ({
+          tabPress: () => {
+            Vibration.vibrate(5);
+          },
+        })}
+      />
     </Tab.Navigator>
   );
 }
