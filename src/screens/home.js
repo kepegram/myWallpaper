@@ -34,7 +34,7 @@ const AnimatedImage = Animated.createAnimatedComponent(Image);
 const Home = () => {
   const navigation = useNavigation();
   const [theme, setTheme] = useState(Appearance.getColorScheme());
-  const [color, setColor] = useState('white');
+  const [color, setColor] = useState(theme === 'light' ? 'black' : 'white');
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -123,7 +123,9 @@ const Home = () => {
           style={homeUI.postButton}
           onPress={() => {
             Vibration.vibrate(5);
-            setColor(color === 'red' ? 'white' : 'red');
+            setColor(
+              color === 'red' ? (theme === 'light' ? 'black' : 'white') : 'red',
+            );
             // AsyncStorage.setItem('photo', post.imageUrl);
           }}>
           <Icon
