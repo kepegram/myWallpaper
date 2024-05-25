@@ -22,8 +22,7 @@ const Profile = () => {
     'https://www.bootdey.com/image/280x280/008B8B/000000',
   ]);
   const [postCount, setPostCount] = useState(10);
-  const [followingCount, setFollowingCount] = useState(20);
-  const [followerCount, setFollowerCount] = useState(30);
+  const [wallpaperCount, setWallpaperCount] = useState(20);
 
   Appearance.addChangeListener(scheme => {
     setTheme(scheme.colorScheme);
@@ -56,7 +55,7 @@ const Profile = () => {
                     ? profileUI.statsCount
                     : profileUI.dmstatsCount
                 }>
-                {followingCount}
+                {wallpaperCount}
               </Text>
               <Text style={profileUI.statsLabel}>Saved Wallpapers</Text>
             </View>

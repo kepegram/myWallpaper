@@ -56,7 +56,7 @@ export const homeUI = StyleSheet.create({
   },
   postImage: {
     width: Dimensions.get('screen').width,
-    height: Dimensions.get('screen').height - 270,
+    height: Dimensions.get('screen').height - 230,
   },
   postFooter: {
     flexDirection: 'row',
@@ -113,7 +113,7 @@ export const exploreUI = StyleSheet.create({
     marginLeft: 20,
   },
   item: {
-    backgroundColor: '#6495ED',
+    backgroundColor: 'silver',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
@@ -126,6 +126,12 @@ export const exploreUI = StyleSheet.create({
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
+  },
+  wallpaperImage: {
+    height: 190,
+    width: 10,
+    padding: 50,
+    aspectRatio: 0, // Maintain aspect ratio
   },
 });
 

@@ -1,50 +1,42 @@
-/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {
-  Text,
   View,
   FlatList,
   TouchableOpacity,
   TextInput,
   Appearance,
+  Image,
+  Button,
 } from 'react-native';
+import axios from 'axios';
 import {exploreUI} from '../styles/styles';
+import {API_KEY} from '../../credentials';
 
 const numColumns = 3;
-const data = [
-  {key: 'A'},
-  {key: 'B'},
-  {key: 'C'},
-  {key: 'D'},
-  {key: 'E'},
-  {key: 'F'},
-  {key: 'G'},
-  {key: 'H'},
-  {key: 'I'},
-  {key: 'J'},
-  {key: 'K'},
-  {key: 'L'},
-  {key: 'M'},
-  {key: 'N'},
-  {key: 'O'},
-  {key: 'P'},
-  {key: 'Q'},
-  {key: 'R'},
-  {key: 'S'},
-  {key: 'T'},
-  {key: 'U'},
-  {key: 'V'},
-  {key: 'W'},
-  {key: 'X'},
-  {key: 'Y'},
-  {key: 'Z'},
-];
 
 const Explore = () => {
-  const [options, setOptions] = useState(data);
+  const [options, setOptions] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [theme, setTheme] = useState(Appearance.getColorScheme());
+
+  const getSearchedData = async searchInput => {
+    try {
+      const response = await axios.get(
+        'https://api.unsplash.com/search/photos',
+        {
+          params: {
+            client_id: API_KEY,
+            query: searchInput,
+            per_page: 20,
+          },
+        },
+      );
+      setOptions(response.data.results);
+    } catch (error) {
+      console.log('Error fetching wallpapers ', error);
+    }
+  };
 
   const renderItem = ({item}) => {
     if (item.empty === true) {
@@ -52,7 +44,10 @@ const Explore = () => {
     }
     return (
       <TouchableOpacity style={[exploreUI.item, {height: 200}]}>
-        <Text style={exploreUI.itemText}>{item.key}</Text>
+        <Image
+          source={{uri: item.urls.small}}
+          style={exploreUI.wallpaperImage}
+        />
       </TouchableOpacity>
     );
   };
@@ -78,22 +73,33 @@ const Explore = () => {
   return (
     <View
       style={{flex: 1, backgroundColor: theme === 'light' ? 'white' : 'black'}}>
+      <TextInput
+        style={exploreUI.searchInput}
+        backgroundColor={theme === 'light' ? '#E1E1E1' : '#4F4F4F'}
+        onChangeText={text => setSearchText(text)}
+        placeholder="Search"
+        placeholderTextColor={theme === 'light' ? 'grey' : 'silver'}
+        value={searchText}
+      />
+      <Button title="Search" onPress={() => getSearchedData(searchText)} />
       <FlatList
         data={formatRow(options, numColumns)}
         style={exploreUI.container}
         backgroundColor={theme === 'light' ? 'white' : 'black'}
         renderItem={renderItem}
         numColumns={numColumns}
-        ListHeaderComponent={() => (
-          <TextInput
-            style={exploreUI.searchInput}
-            backgroundColor={theme === 'light' ? '#E1E1E1' : '#4F4F4F'}
-            onChangeText={text => setSearchText(text)}
-            placeholder="Search"
-            placeholderTextColor={theme === 'light' ? 'grey' : 'silver'}
-            value={searchText}
-          />
-        )}
+        // ListHeaderComponent={() => (
+        //   <>
+        //     <TextInput
+        //       style={exploreUI.searchInput}
+        //       backgroundColor={theme === 'light' ? '#E1E1E1' : '#4F4F4F'}
+        //       onChangeText={text => setSearchText(text)}
+        //       placeholder="Search"
+        //       placeholderTextColor={theme === 'light' ? 'grey' : 'silver'}
+        //       value={searchText}
+        //     />
+        //   </>
+        // )}
       />
     </View>
   );

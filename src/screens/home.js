@@ -28,6 +28,8 @@ import Animated, {
   withDelay,
   withSpring,
 } from 'react-native-reanimated';
+import axios from 'axios';
+import {API_KEY} from '../../credentials';
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
@@ -35,34 +37,7 @@ const Home = () => {
   const navigation = useNavigation();
   const [theme, setTheme] = useState(Appearance.getColorScheme());
   const [color, setColor] = useState(theme === 'light' ? 'black' : 'white');
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      userId: 1,
-      username: 'User 1',
-      date: 'May 18, 2023',
-      description: 'Dock in heaven',
-      imageUrl:
-        'https://cdn.naturettl.com/wp-content/uploads/2017/02/22014001/top-tips-improve-landscapes-ross-hoddinott-11-900x601.jpg',
-    },
-    {
-      id: 2,
-      userId: 2,
-      username: 'User 2',
-      date: 'May 18, 2023',
-      description: 'Road to nirvana',
-      imageUrl: 'https://iso.500px.com/wp-content/uploads/2014/07/big-one.jpg',
-    },
-    {
-      id: 3,
-      userId: 3,
-      username: 'User 3',
-      date: 'May 18, 2023',
-      description: 'Sunrise of dreams',
-      imageUrl:
-        'https://greatbigphotographyworld.com/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg',
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
   const scale = useSharedValue(0);
   const rStyle = useAnimatedStyle(() => ({
     transform: [
@@ -82,6 +57,26 @@ const Home = () => {
     });
   }, [scale]);
 
+  useEffect(() => {
+    getStockImages();
+  }, []);
+
+  const getStockImages = async () => {
+    try {
+      const response = await axios.get('https://api.unsplash.com/photos', {
+        params: {
+          client_id: API_KEY,
+          query: 'nature',
+          per_page: 10,
+        },
+      });
+      setPosts(response.data);
+      //console.log(response.data);
+    } catch (error) {
+      console.log('Error fetching wallpapers ', error);
+    }
+  };
+
   // used to send liked photo to storage if heart is red
   // useEffect(() => {
   //   if (color === 'red') {
@@ -99,7 +94,7 @@ const Home = () => {
         <TapGestureHandler numberOfTaps={2} onActivated={onDoubleTap}>
           <Animated.View>
             <ImageBackground
-              source={{uri: post.imageUrl}}
+              source={{uri: post.urls.small}}
               style={homeUI.postImage}>
               <AnimatedImage
                 source={require('../../assets/imgs/red-heart-icon.png')}
@@ -142,10 +137,10 @@ const Home = () => {
               ? homeUI.postDescription
               : homeUI.dmpostDescription
           }>
-          {post.description}
+          {post.alt_description}
         </Text>
         <Text style={theme === 'light' ? homeUI.postDate : homeUI.dmpostDate}>
-          {post.date}
+          {post.updated_at}
         </Text>
       </View>
     </View>
