@@ -28,15 +28,8 @@ Profile:
 <img src = 'assets/app-imgs/Screenshot_20240601_182457_myWallpaper.jpg' height='600'>
 </p>
 
-## Video Demo
-<p>
-<video width='270' height='600' controls>
-   <source src='assets/app-imgs/Screen_Recording_20240601_182444_myWallpaper.mp4' type='video/mp4'>
-</video>
-<video width='270' height='600' controls>
-   <source src='assets/app-imgs/Screen_Recording_20240601_182548_myWallpaper.mp4' type='video/mp4'>
-</video>
-</p>
+## Demo
+<img src="assets/app-imgs/search_demo.gif" height="600" />
 
 ## Installation
 
