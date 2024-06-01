@@ -1,7 +1,8 @@
-format images/make search button look better on explore page
-when clicking on image, it should expand to an image view
-allow user to like images seen on home page
-allow user to save images to device from home, explore tab and likes
+fix scrolling issue on home tab when reaching end
+format images on explore tab
+when clicking on image in the explore tab, it should expand to an image view
+allow user to like images seen on home tab
+allow user to save images to device from home, explore and likes tab
 
 https://www.4waytechnologies.com/blog/how-to-create-a-set-wallpaper-button-in-a-react-native-app
 https://dev.to/majiyd/react-native-series-how-to-save-or-share-react-native-component-as-an-image-5gd3

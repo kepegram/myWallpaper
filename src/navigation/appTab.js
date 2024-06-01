@@ -7,7 +7,6 @@ import Home from '../screens/home';
 import Explore from '../screens/explore';
 import Profile from '../screens/profile';
 import Likes from '../screens/likes';
-import CreatePost from '../screens/createPost';
 
 const Tab = createBottomTabNavigator();
 
@@ -57,15 +56,6 @@ function AppTab() {
       <Tab.Screen
         name="Explore"
         component={Explore}
-        listeners={() => ({
-          tabPress: () => {
-            Vibration.vibrate(5);
-          },
-        })}
-      />
-      <Tab.Screen
-        name="Create Post"
-        component={CreatePost}
         listeners={() => ({
           tabPress: () => {
             Vibration.vibrate(5);

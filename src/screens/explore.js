@@ -7,7 +7,8 @@ import {
   TextInput,
   Appearance,
   Image,
-  Button,
+  Keyboard,
+  Text,
 } from 'react-native';
 import axios from 'axios';
 import {exploreUI} from '../styles/styles';
@@ -43,7 +44,9 @@ const Explore = () => {
       return <View style={[exploreUI.item, exploreUI.itemInvisible]} />;
     }
     return (
-      <TouchableOpacity style={[exploreUI.item, {height: 200}]}>
+      <TouchableOpacity
+        style={[exploreUI.item, {height: 200}]}
+        onPress={console.log(item.urls.small)}>
         <Image
           source={{uri: item.urls.small}}
           style={exploreUI.wallpaperImage}
@@ -77,29 +80,44 @@ const Explore = () => {
         style={exploreUI.searchInput}
         backgroundColor={theme === 'light' ? '#E1E1E1' : '#4F4F4F'}
         onChangeText={text => setSearchText(text)}
-        placeholder="Search"
+        placeholder="Search images here"
         placeholderTextColor={theme === 'light' ? 'grey' : 'silver'}
         value={searchText}
       />
-      <Button title="Search" onPress={() => getSearchedData(searchText)} />
+      {/* <Button
+        title="Search"
+        onPress={() => {
+          getSearchedData(searchText);
+          Keyboard.dismiss;
+        }}
+        style={{border:}}
+      /> */}
+      <TouchableOpacity
+        onPress={() => {
+          getSearchedData(searchText);
+          Keyboard.dismiss;
+        }}
+        style={{alignItems: 'center'}}>
+        <View
+          style={{
+            backgroundColor: theme === 'light' ? '#E1E1E1' : '#4F4F4F',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 15,
+            height: 30,
+            width: 90,
+          }}>
+          <Text style={{color: theme === 'light' ? 'grey' : 'silver'}}>
+            Search
+          </Text>
+        </View>
+      </TouchableOpacity>
       <FlatList
         data={formatRow(options, numColumns)}
         style={exploreUI.container}
         backgroundColor={theme === 'light' ? 'white' : 'black'}
         renderItem={renderItem}
         numColumns={numColumns}
-        // ListHeaderComponent={() => (
-        //   <>
-        //     <TextInput
-        //       style={exploreUI.searchInput}
-        //       backgroundColor={theme === 'light' ? '#E1E1E1' : '#4F4F4F'}
-        //       onChangeText={text => setSearchText(text)}
-        //       placeholder="Search"
-        //       placeholderTextColor={theme === 'light' ? 'grey' : 'silver'}
-        //       value={searchText}
-        //     />
-        //   </>
-        // )}
       />
     </View>
   );

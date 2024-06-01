@@ -56,7 +56,7 @@ export const homeUI = StyleSheet.create({
   },
   postImage: {
     width: Dimensions.get('screen').width,
-    height: Dimensions.get('screen').height - 230,
+    height: Dimensions.get('screen').height - 270,
   },
   postFooter: {
     flexDirection: 'row',

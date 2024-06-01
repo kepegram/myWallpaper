@@ -38,6 +38,7 @@ const Home = () => {
   const [theme, setTheme] = useState(Appearance.getColorScheme());
   const [color, setColor] = useState(theme === 'light' ? 'black' : 'white');
   const [posts, setPosts] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
   const scale = useSharedValue(0);
   const rStyle = useAnimatedStyle(() => ({
     transform: [
@@ -58,26 +59,37 @@ const Home = () => {
   }, [scale]);
 
   useEffect(() => {
-    getStockImages();
+    getStockImages('nature');
+    [];
   }, []);
 
-  const getStockImages = async () => {
+  const getStockImages = async imageTheme => {
+    console.log('Searching....', imageTheme);
     try {
-      const response = await axios.get('https://api.unsplash.com/photos', {
-        params: {
-          client_id: API_KEY,
-          query: 'nature',
-          per_page: 10,
+      const response = await axios.get(
+        'https://api.unsplash.com/search/photos',
+        {
+          params: {
+            client_id: API_KEY,
+            query: imageTheme,
+            per_page: 10,
+          },
         },
-      });
-      setPosts(response.data);
-      //console.log(response.data);
+      );
+      setPosts(response.data.results);
     } catch (error) {
       console.log('Error fetching wallpapers ', error);
     }
   };
 
+  const handleRefresh = () => {
+    setRefreshing(true);
+    getStockImages('random');
+    setRefreshing(false);
+  };
+
   // used to send liked photo to storage if heart is red
+
   // useEffect(() => {
   //   if (color === 'red') {
   //     AsyncStorage.setItem('photo', posts.imageUrl);
@@ -151,8 +163,7 @@ const Home = () => {
   });
 
   return (
-    <ScrollView
-      style={theme === 'light' ? homeUI.container : homeUI.dmcontainer}>
+    <View style={theme === 'light' ? homeUI.container : homeUI.dmcontainer}>
       <Header
         placement="left"
         containerStyle={theme === 'light' ? homeUI.header : homeUI.dmheader}
@@ -176,8 +187,10 @@ const Home = () => {
         contentContainerStyle={homeUI.postListContainer}
         keyExtractor={post => post.id.toString()}
         renderItem={({item}) => <PostCard post={item} />}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
       />
-    </ScrollView>
+    </View>
   );
 };
 

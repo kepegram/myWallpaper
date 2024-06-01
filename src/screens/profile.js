@@ -44,17 +44,6 @@ const Profile = () => {
                     ? profileUI.statsCount
                     : profileUI.dmstatsCount
                 }>
-                {postCount}
-              </Text>
-              <Text style={profileUI.statsLabel}>Posts</Text>
-            </View>
-            <View style={profileUI.statsBox}>
-              <Text
-                style={
-                  theme === 'light'
-                    ? profileUI.statsCount
-                    : profileUI.dmstatsCount
-                }>
                 {wallpaperCount}
               </Text>
               <Text style={profileUI.statsLabel}>Saved Wallpapers</Text>
